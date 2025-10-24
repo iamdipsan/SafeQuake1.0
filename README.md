@@ -75,7 +75,7 @@ These upgrades will make the application more powerful and easier for users to s
 - - -
 
 ## 💬 Feedback and Support
-For feedback, issues, or support, please [open an issue](https://github.com/your-repo-link/issues).
+For feedback, issues, or support, please open an issue
 
 - - -
 
