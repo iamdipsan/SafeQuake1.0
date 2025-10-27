@@ -1,6 +1,6 @@
 # 🏠 SafeQuake v1.0 Overview
 
-The idea for this project came when I was reading an article about earthquakes in Nepal — a country that’s highly prone to seismic activity. The **Gorkha earthquake of 2015** took many lives and destroyed numerous buildings.  
+The idea for this project came when I was reading an article about earthquakes in our country — Nepal is highly prone to seismic activity. The **Gorkha earthquake of 2015** took many lives and destroyed numerous buildings.  
 
 Even today, many houses still have structural damage, and people continue to live in them — which is extremely dangerous. Cracks and weak structural surfaces could cause life-threatening issues if another earthquake strikes in the future.
 
