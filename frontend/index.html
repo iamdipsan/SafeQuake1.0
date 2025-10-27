@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SafeQuake - Crack Detection</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <div class="container">
+    <h2>SafeQuake</h2>
+    <p class="description">Upload an image of a structure to detect cracks.</p>
+    <input type="file" id="fileInput" accept="image/*">
+    <button onclick="uploadImage()">Upload Image</button>
+    <p id="result"></p>
+  </div>
+
+  <script>
+    async function uploadImage() {
+      const fileInput = document.getElementById("fileInput");
+      const file = fileInput.files[0];
+      
+      // ✅ Add safety check
+      if (!file) {
+        alert("Please select an image first!");
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append("file", file);
+
+      try {
+        const response = await fetch("http://127.0.0.1:5000/predict", {
+          method: "POST",
+          body: formData
+        });
+
+        const data = await response.json();
+
+        // 
+        document.getElementById("result").innerText =
+          data.prediction
+            ? `Prediction: ${data.prediction} (Confidence: ${data.confidence || "N/A"})`
+            : `Error: ${data.error || "Something went wrong"}`;
+
+      } catch (error) {
+        document.getElementById("result").innerText = "Error connecting to backend!";
+        console.error(error);
+      }
+    }
+  </script>
+</body>
+</html>
