@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_from_directory
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
 from tensorflow.keras.applications import efficientnet
@@ -48,6 +48,8 @@ def predict():
         # and clean up uploaded file 
         os.remove(file_path)
 
+        print(f"Returning: {result}, Confidence: {confidence * 100:.2f}%")
+
         # return the json
         return jsonify({
             "prediction": result,
@@ -59,9 +61,15 @@ def predict():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-@app.route("/", methods=["GET"])
+# serve the HTML homepage
+@app.route("/")
 def home():
-    return "Welcome to the Crack Detection API"
+    return send_from_directory('../frontend', 'index.html')
+
+# serve static files (CSS, JS, images, etc.)
+@app.route("/<path:filename>")
+def serve_static(filename):
+    return send_from_directory('../frontend', filename)
 
 if __name__ == "__main__":
     app.run(debug=True)
